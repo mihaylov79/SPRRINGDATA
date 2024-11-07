@@ -3,6 +3,7 @@ package springdata.bookshop.data.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,16 @@ public class Category {
 
     public Category(){
         this.books = new HashSet<>();
+    }
+
+    public Category(int id, String name, Set<Book> books) {
+        this.id = id;
+        this.name = name;
+        this.books = books;
+    }
+
+    public Category(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -45,5 +56,19 @@ public class Category {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+        return  Objects.equals(name, category.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }

@@ -34,6 +34,13 @@ public class Author {
         this.writedBooks = writedBooks;
     }
 
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+
+
     public int getAuthorId() {
         return authorId;
     }

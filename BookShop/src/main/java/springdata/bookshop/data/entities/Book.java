@@ -14,8 +14,9 @@ import java.util.Set;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private int bookId;
+    private Long bookId;
 
     @Column(length = 50,nullable = false)
     private String title;
@@ -55,7 +56,7 @@ public class Book {
         this.categories = new HashSet<>();
     }
 
-    public Book(int bookId, String title, String description, Edition editionType, BigDecimal price, int copies, LocalDate releaseDate, Restriction ageRestriction, Author author, Set<Category> categories) {
+    public Book(Long bookId, String title, String description, Edition editionType, BigDecimal price, int copies, LocalDate releaseDate, Restriction ageRestriction, Author author, Set<Category> categories) {
         this.bookId = bookId;
         this.title = title;
         this.description = description;
@@ -68,7 +69,16 @@ public class Book {
         this.categories = categories;
     }
 
-    public int getBookId() {
+    public Book(Edition editionType, LocalDate releaseDate, int copies, BigDecimal price, Restriction ageRestriction, String title) {
+        this.editionType = editionType;
+        this.releaseDate = releaseDate;
+        this.copies = copies;
+        this.price = price;
+        this.ageRestriction = ageRestriction;
+        this.title = title;
+    }
+
+    public Long getBookId() {
         return bookId;
     }
 
@@ -106,5 +116,45 @@ public class Book {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEditionType(Edition editionType) {
+        this.editionType = editionType;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setCopies(int copies) {
+        this.copies = copies;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setAgeRestriction(Restriction ageRestriction) {
+        this.ageRestriction = ageRestriction;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
